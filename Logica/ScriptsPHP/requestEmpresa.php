@@ -1,18 +1,18 @@
 <?php
-require_once 'HtmlControl.php';
+require_once ('../Controler/HCempresa.php');
+//require_once $_SERVER['DOCUMENT_ROOT']."/activosfijos/Logica/Controler/HCempresa.php";
 
   session_start();
-  $empresa = $_POST['empresa'];
-  $activo = $_POST['activo'];
+  $arrempresa = ($_POST['Json']);
+  echo $arrempresa['nombre'];
+  $control = new HCempresa($_SESSION);
   
-  $control = new HtmlControl($_SESSION);
-  
-  if($empresa != null){
-    $control->cargarEmpresa($empresa, $activo);
+  if($arrempresa != null){
+    $control->cargarEmpresa($arrempresa);
     try{
       $control->crearEmpresa();
     }catch(Exception $e){
-      echo $e;
+      echo $e->getMessage();
     }
   }else{
     //creacion de mensaje de respuesta (P)  

@@ -1,5 +1,6 @@
 <?php
 require_once 'IDataAccess.php';
+require_once 'Conexion.php';
 /*
  * Esta clase se encarga de realizar la interacci�n del modelo con la base de
  * datos, mediante la interface IdataAcces.
@@ -9,8 +10,13 @@ require_once 'IDataAccess.php';
 Class DataAccess {
 
 	private static $CONST_PREFIX = "";
-
-	/*
+	private static $dbcon;
+	
+	public static function setConexion(Conexion $conexion)
+	{
+		self::$dbcon = $conexion->getConexion();
+	} 
+	 /*
 	 * Inserta un registro en la base de datos.
 	 * @param $dataAccess clase del modelo que implementa IDataAccess
 	 * @return t�tulo de la tabla
@@ -20,6 +26,7 @@ Class DataAccess {
 		$result = null;
 		$table = $dataAccess -> getTitle();
 		$dataArray = $dataAccess -> getData()[1];
+		$dbconexion = self::$dbcon;
 
 		if ($table == null || $dataArray == null) {
 			throw new Exception("Nombre de tabla ó datos NULOS :)");
@@ -37,8 +44,9 @@ Class DataAccess {
 				$query .= ");";
 			}
 		}
-		echo $query;
-		$result = pg_query($query) or die("FAllo");
+		echo $query." ";
+		echo $dbconexion;
+		$result = pg_query($dbconexion, $query); // or die("FAllo");
 
 		if (!$result) {
 			throw new Exception("Error en la consulta :)");
@@ -57,7 +65,7 @@ Class DataAccess {
 			throw new Exception("Nombre de tabla ó datos ó nombres de campos NULOS");
 			return;
 		}
-		$query = "SELECT * FROM " . self::$CONST_PREFIX . $table . "WHERE " . pg_escape_string($columName[0]) . "= '" . pg_escape_string($values[0]) . ";";
+		$query = "SELECT * FROM " . self::$CONST_PREFIX . $table . " WHERE " . pg_escape_string($columName[0]) . "= '" . pg_escape_string($values[0]) . ";";
 
 		$result = pg_query($query);
 
@@ -74,7 +82,7 @@ Class DataAccess {
 
 	}
 
-	public static function actualizar(IDataAccess $dataAccess) {
+	public static function update(IDataAccess $dataAccess) {
 		$result = null;
 		$table = $dataAccess -> getTitle();
 		$values = $dataAccess -> getData()[1];
@@ -105,11 +113,77 @@ Class DataAccess {
 		return TRUE;
 
 	}
+	
+	public static function selectWhere(IDataAccess $dataAccess, $positionWhile="")
+	{
+		$dbconexion = self::$dbcon;
+		$table = $dataAccess->getTitle();
+		$values = $dataAccess -> getData()[1];
+		$columName = $dataAccess -> getData()[0];
+		
+		$query = "SELECT * FROM ".$table;
+		
+		/*if($positionWhile != ""){
+    		$query.= " WHERE " . pg_escape_string($columName[$positionWhile]) . " = '" . pg_escape_string($values[$positionWhile])."'"; 
+		}*/
+		$query.=";";
+		
+	
+		$result = pg_query($dbconexion, $query);
+		
+		if (!$result) {
+			throw new Exception("Error en la consulta :)");
+			return;
+		}
+		
+		while ($row = pg_fetch_assoc($result)) {
+			$dataArry[] = $row;
+		}
+		return $dataArry;
+	}
 
 	public static function eliminar(IDataAccess $dataAccess) {
 	}
 
-	public static function getTabla(IDataAccess $dataAccess) {
+	public static function Login(IDataAccess $dataAccess)
+	{
+		$dbconexion = self::$dbcon;	
+		$result = FALSE;
+		$table = $dataAccess -> getTitle();
+		$values = $dataAccess -> getData()[1];
+		$columName = $dataAccess -> getData()[0];
+	
+        $name = pg_escape_string($values[3]);
+        $password = pg_escape_string($values[5]);
+		
+		if($name == null && $password == null)
+		{
+			throw new Exception("Usuario ó Usuario NULOS");
+			return FALSE;
+		}
+		
+		$query = "SELECT * FROM " . self::$CONST_PREFIX . $table . " WHERE " . pg_escape_string($columName[3]) . " = '" . pg_escape_string($values[3]) . "' AND ".
+			pg_escape_string($columName[5]) . " = '" . pg_escape_string($values[5]) ."' ;";
+		
+    	echo $dbconexion;
+		$result = pg_query($dbconexion, $query);
+		//echo $result;
+		if ($result == null) 
+		{	
+			return FALSE;
+		}
+		
+		$row = pg_fetch_row($result);
+		
+		if(!$row[14]) //columna de la contrasenia
+		{
+			return FALSE;
+		}
+		
+		$dataAccess -> setData($row);
+		echo $row[0];
+		
+		return TRUE;
 	}
 
 }

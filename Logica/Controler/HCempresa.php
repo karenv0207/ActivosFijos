@@ -6,8 +6,13 @@ class HCempresa extends ControlEmpresa{
 		parent::__construct($session);
 	}
 
-	public function cargarEmpresa($nombre ,$activo){
-		parent::setEmpresa($nombre, $activo);
+	public function cargarEmpresa($arrempresa){
+		parent::setEmpresa($arrempresa);
+	}
+	
+	public function obtenerConsulta()
+	{
+		return $result = parent::consultarEmpresas();
 	}
 
 }
