@@ -51,7 +51,7 @@ class Dependencia implements IDataAccess{
 
 	//implementacion de los metodos de IDataAcces
 	public function getTitle(){
-		return "Dependencia";
+		return "dependencias";
 	}
 
 	public function getData()

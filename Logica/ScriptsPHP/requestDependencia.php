@@ -5,16 +5,23 @@ require_once ('../Controler/HCDependencia.php');
 	
 	$arrdependencia = ($_POST['Json']);
   
-  $control = new HCDependencia($_SESSION);
+  	$control = new HCDependencia($_SESSION);
   
-  if($arrdependencia != null){
-    $control->cargarDependencia($arrdependencia);
-    try{
+  if($arrdependencia != null)
+  {
+   	$control->cargarDependencia($arrdependencia);
+    try
+    {
       $control->crearDependencia();
-    }catch(Exception $e){
+	  echo TRUE;
+    }
+    catch(Exception $e)
+    {
       echo $e->getMessage();
     } 
-  }else{
+  }
+  else
+  {
     //creacion de mensaje de respuesta (P)  
     echo("Ingrese el nombre de la dependencia");
   }

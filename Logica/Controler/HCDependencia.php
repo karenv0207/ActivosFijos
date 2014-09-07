@@ -1,4 +1,5 @@
 <?php
+
 require 'ControlDependencia.php';
 
 class HCDependencia extends ControlDependencia{
