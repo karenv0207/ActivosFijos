@@ -33,7 +33,7 @@ function pressButton()
   }
   
   var StringJson = '{"nombre"= "'+e+'", "activo" = '+a+'}';
-  var JSON = $.parseJSON('{"nombre":"'+e+'", "activo":'+a+'}'); 
+  var JSON = $.parseJSON('{"idempresa":0, "nombre":"'+e+'", "activo":'+a+'}'); 
   
   $.post("../logica/ScriptsPHP/requestEmpresa.php",{Json:JSON}, dataR); 
   return false;
@@ -43,12 +43,17 @@ function dataR(bandera)
 {
   	if(bandera == 1)
 	{
-		setTimeout(location.href = "../html/main.html", 2000);
-		alert("La empresa ha sido registrada");
+		setTimeout ("redireccionar()", 2000); 
+  		alert("La empresa ha sido agregada");
 	}
 	else
 	{
 		document.write(bandera);
 	}
 	
+}
+
+function redireccionar()
+{
+	location.href = "main.html";	
 }

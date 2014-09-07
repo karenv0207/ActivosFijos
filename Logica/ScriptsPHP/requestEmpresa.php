@@ -1,10 +1,9 @@
 <?php
 require_once ('../Controler/HCempresa.php');
-//require_once $_SERVER['DOCUMENT_ROOT']."/activosfijos/Logica/Controler/HCempresa.php";
 
   session_start();
   $arrempresa = ($_POST['Json']);
-  echo $arrempresa['nombre'];
+  
   $control = new HCempresa($_SESSION);
   
   if($arrempresa != null){

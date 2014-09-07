@@ -1,8 +1,15 @@
+<?php
+require_once ('../Controler/HClinea.php');
+    session_start();
+  
+  	$control = new HClinea($_SESSION);
+  	$control ->cargarLinea(null, null);
+  	$result = $control->obtenerConsulta();
+	
+?>
+
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <html class="no-js"> 
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -42,11 +49,9 @@
     <!-- menu superior -->
      <div class="container" style="padding-top: 1em;">
   		 <ul class="nav nav-tabs nav-justified">
-    		 <li><a href="main.html">Inicio</a></li>
-		     <li class="active"><a href="Empresa.html">Empresa</a></li>
-         <li><a href="Linea.html">Linea</a></li>
-		     <li><a href="Usuario.html">Usuario</a></li>
-		     <li><a href="index.html">Salir</a></li> <!-- no elimina sessions, por favor revisar -->
+    		 <li><a href="#">Inicio</a></li>
+		     <li><a href="formularioLinea.html">Agregar Linea</a></li>
+		     <li><a href="#">Salir</a></li>
 	  	 </ul>
 	   </div> 
     <p>
@@ -54,14 +59,37 @@
 		<div class="row">
 			<div class="col-md-2">
 				<ul class="nav nav-pills nav-stacked">
-					<li><a href="formularioEmpresa.html">Registrar</a></li>
-		     		<li><a href="../Logica/ScriptsPHP/consultaEmpresa.php">Reportar</a></li>
+					<li><a href="formularioLinea.html">Registrar</a></li>
+		     		<li class="active"><a href="../Logica/ScriptsPHP/consultaLinea.php">Reportar</a></li>
 		     		<li><a href="main.html">Volver</a></li>
 				</ul>
       		</div>
+      		<div class="col-md-10">
+				<div class="container" style="padding-top: 1em;">
+			  		<table class="table table-hover">
+			  			<thead>
+			    			<tr>
+			      				<th>ID</th>
+			      				<th>Nombre Linea</th>
+			      				<th>Activo</th>
+			    			</tr>
+			  			</thead>
+			  		<tbody>
+			      	<?php	$count = count($result); 
+			      			for ($index = 0; $index < $count; $index++) { 
+								$row = $result[$index]; ?>
+						<tr>	
+							<td><?php echo $row['idlinea'];?></td>
+						  	<td><?php echo $row['nombre'];?></td>
+						  	<td><?php echo $row['activo'];?></td>
+						</tr>
+					<?php 	} ?> 
+			       </table>     
+			     </div>		
+      		</div>
 		</div>               
     </div>
-
+    
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 
@@ -78,5 +106,5 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
-    </body>
+    </body> 
 </html>

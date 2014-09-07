@@ -2,26 +2,26 @@
 require_once ('Tools.php');
 require_once ('../bdcontrol/IDataAccess.php');
 
-class Empresa implements IDataAccess{
+class Linea implements IDataAccess{
 
-	private $idEmpresa;
+	private $idLinea;
 	private $nombre;
 	private $activo;
 
-	public function __construct($arrempresa = null){
-		if($arrempresa != null)
+	public function __construct($arrlista = null){
+		if($arrlista != null)
 		{
-			$this->setData($arrempresa);
+			$this->setData($arrlista);
 		}
 	}
 	
 	//Setters and Getters
-	Public function setIdEmpresa($idEmpresa){
-		$this->idEmpresa = $idEmpresa;
+	Public function setIdLinea($idLinea){
+		$this->idLinea = $idLinea;
 	}
 
-	public function getIdEmpresa(){
-		return $idEmpresa; 
+	public function getIdLinea(){
+		return $idLinea; 
 	}
 
 	public function setNombre($nombre){
@@ -42,19 +42,19 @@ class Empresa implements IDataAccess{
 
 	//implementacion de los metodos de IDataAcces
 	public function getTitle(){
-		return "Empresa";
+		return "Linea";
 	}
 
 	public function getData()
 	{
-		$columName = array("idempresa", "nombre", "activo");
-		$values = array($this->idEmpresa, $this->nombre, $this->activo);
+		$columName = array("idlinea", "nombre", "activo");
+		$values = array($this->idLinea, $this->nombre, $this->activo);
     	return array($columName, $values);
 	}
 
 	public function setData($arrayData)
 	{
-		$this->idEmpresa = Tools::validate($arrayData['idempresa']);
+		$this->idLinea = Tools::validate($arrayData['idempresa']);
 		$this->nombre = Tools::validate($arrayData['nombre']);
 		$this->activo = Tools::validate($arrayData['activo']);
 	}

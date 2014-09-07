@@ -44,8 +44,7 @@ Class DataAccess {
 				$query .= ");";
 			}
 		}
-		echo $query." ";
-		echo $dbconexion;
+		
 		$result = pg_query($dbconexion, $query); // or die("FAllo");
 
 		if (!$result) {
@@ -114,7 +113,7 @@ Class DataAccess {
 
 	}
 	
-	public static function selectWhere(IDataAccess $dataAccess, $positionWhile="")
+	public static function selectWhere(IDataAccess $dataAccess, $positionWhile=null)
 	{
 		$dbconexion = self::$dbcon;
 		$table = $dataAccess->getTitle();
@@ -123,7 +122,7 @@ Class DataAccess {
 		
 		$query = "SELECT * FROM ".$table;
 		
-		/*if($positionWhile != ""){
+		/*if($positionWhile != null){
     		$query.= " WHERE " . pg_escape_string($columName[$positionWhile]) . " = '" . pg_escape_string($values[$positionWhile])."'"; 
 		}*/
 		$query.=";";
@@ -165,23 +164,21 @@ Class DataAccess {
 		$query = "SELECT * FROM " . self::$CONST_PREFIX . $table . " WHERE " . pg_escape_string($columName[3]) . " = '" . pg_escape_string($values[3]) . "' AND ".
 			pg_escape_string($columName[5]) . " = '" . pg_escape_string($values[5]) ."' ;";
 		
-    	echo $dbconexion;
 		$result = pg_query($dbconexion, $query);
-		//echo $result;
+		
 		if ($result == null) 
 		{	
 			return FALSE;
 		}
 		
-		$row = pg_fetch_row($result);
+		$row = pg_fetch_assoc($result);
 		
-		if(!$row[14]) //columna de la contrasenia
+		if(!$row['idusuario']) //columna de la contrasenia
 		{
 			return FALSE;
 		}
 		
 		$dataAccess -> setData($row);
-		echo $row[0];
 		
 		return TRUE;
 	}

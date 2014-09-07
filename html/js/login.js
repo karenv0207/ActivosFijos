@@ -23,8 +23,8 @@
 		});
 	});
 });*/
-
- $(document).ready(onclick);
+var doc = $(document);
+ doc.ready(onclick);
 
 function onclick(){
 	$("#iniciar").click(logon);
@@ -43,14 +43,36 @@ function logon()
 
 function resul (argument) {
   
-  	setTimeout ("redireccionar()", 2000); 
-  	alert(argument);
+  	/*
+  	 var obj = JSON.parse(argument);
+  	if(obj.proceso){
+  		//post main
+  	}
+  	else
+  	{
+ 		//doc. pasa el div visble y le da el mensaje del json 		
+  	}*/
   	
-//var obj = JSON.parse(argument);
-  //if(obj.)
+  	if(argument == 1)
+  	{
+	  	setTimeout ("redireccionar("+argument+")", 2000); 
+	  	alert("Bienvenido");
+  	}
+  	else
+  	{
+  		setTimeout("(redireccionar("+argument+")", 2000);	
+  	} 
 }
 
-function redireccionar()
+function redireccionar(argument)
 {
-	location.href = "main.html";	
+	if(argument == 1)
+	{
+		location.href = "main.html";		
+	}
+	else
+	{
+		location.href = "index.html";		
+	}
+	
 }
