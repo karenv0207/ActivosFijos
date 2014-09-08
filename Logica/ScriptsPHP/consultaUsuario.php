@@ -1,10 +1,9 @@
 <?php
-    require_once ('../Controler/HCDependencia.php');
-	
-	session_start();
+require_once ('../Controler/HCusuario.php');
+    session_start();
   
-  	$control = new HCDependencia($_SESSION);
-  	$control ->cargarDependencia(null);
+  	$control = new HCusuario($_SESSION);
+  	$control ->cargarUsuario(null);
   	$result = $control->obtenerConsulta();
 	
 ?>
@@ -33,8 +32,8 @@
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
-    
     <body>
+    
     <div class="container">
       <!-- Logo Empresa -->
       <div class="row">
@@ -55,8 +54,8 @@
   		 <ul class="nav nav-tabs nav-justified">
     		 <li><a href="main.html">Inicio</a></li>
 		     <li><a href="Empresa.html">Empresa</a></li>
-         	 <li class="active"><a href="Dependencia.html">Dependencia</a></li>
-         	 <li><a href="Linea.html">Linea</a></li>
+         	 <li><a href="Dependencia.html">Dependencia</a></li>
+         	 <li class="active"><a href="Linea.html">Linea</a></li>
 		     <li><a href="Usuario.html">Usuario</a></li>
 		     <li><a href="index.html">Salir</a></li> <!-- no elimina sessions, por favor revisar -->
 	  	 </ul>
@@ -66,20 +65,27 @@
 		<div class="row">
 			<div class="col-md-2">
 				<ul class="nav nav-pills nav-stacked">
-					<li><a href="formularioDependencia.html">Registrar</a></li>
-		     		<li class="active"><a href="../Logica/ScriptsPHP/consultaDependencia.php">Reportar</a></li>
+					<li><a href="formularioEmpresa.html">Registrar</a></li>
+		     		<li class="active"><a href="../Logica/ScriptsPHP/consultaEmpresa.php">Reportar</a></li>
 		     		<li><a href="main.html">Volver</a></li>
 				</ul>
       		</div>
       		<div class="col-md-10">
 				<div class="container" style="padding-top: 1em;">
+			  		<div class="table-responsive">
 			  		<table class="table table-hover">
 			  			<thead>
 			    			<tr>
 			      				<th>ID</th>
-			      				<th>Nombre Dependencia</th>
-			      				<th>Activo</th>
-			      				<th>Empresa</th>
+			      				<th>Nombres</th>
+			      				<th>Apellidos</th>
+			      				<th>Cedula</th>
+			      				<th>Direccion</th>
+			      				<th>Ciudad</th>
+			      				<th>Telefono</th>
+			      				<th>Correo</th>
+			      				<th>Usuario</th>
+			      				<th>Seccion</th>
 			    			</tr>
 			  			</thead>
 			  		<tbody>
@@ -87,16 +93,40 @@
 			      			for ($index = 0; $index < $count; $index++) { 
 								$row = $result[$index]; ?>
 						<tr>	
-							<td><?php echo $row['iddependencia'];?></td>
-						  	<td><?php echo $row['nombre'];?></td>
-						  	<td><?php echo $row['activo'];?></td>
-						  	<td><?php echo $row['idempresa'];?></td>
+							<td><?php echo $row['idusuario'];?></td>
+						  	<td><?php echo $row['nombres'];?></td>
+						  	<td><?php echo $row['apellidos'];?></td>
+						  	<td><?php echo $row['cc'];?></td>
+						  	<td><?php echo $row['direccion'];?></td>
+						  	<td><?php echo $row['ciudad'];?></td>
+						  	<td><?php echo $row['telefono'];?></td>
+						  	<td><?php echo $row['correo'];?></td>
+						  	<td><?php echo $row['usuario'];?></td>
+						  	<td><?php echo $row['idseccion_secciones'];?></td>
 						</tr>
-					<?php } ?> 
+					<?php 	} ?> 
+			       </div>	
 			       </table>     
 			     </div>		
       		</div>
 		</div>               
     </div>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+       <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
     </body> 
 </html>
