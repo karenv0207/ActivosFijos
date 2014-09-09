@@ -68,7 +68,7 @@
       		</div>
 		  
         <div class="col-md-4">
-	      <form class="form-horizontal"> <!--action="../logica/ScriptsPHP/requestEmpresa.php">-->
+	      <form class="form-horizontal"> <!--action="../logica/ScriptsPHP/requestSeccion.php">-->
 	
 	        <fieldset>
 	
@@ -90,13 +90,13 @@
 	              </label>	
 	        </div>
 	        
-	        <!-- Empresa -->
+	        <!-- Dependencia -->
 	        <div class="row">
 	        <div class="control-group">
 	        	<div class="col-xs-6">	
-	          		<label class="control-label" for="Empresa">Empresa</label>
+	          		<label class="control-label" for="Dependecia">Dependencia</label>
 	            		<div class="controls">
-			        		<select class="form-control" id = "empresa" class="input-xlarge">
+			        		<select class="form-control" id = "dependencia" class="input-xlarge">
 					  			<option>1</option>
 								<option>2</option>
 								<option>3</option>
@@ -107,12 +107,44 @@
 				</div>
 				</div>
 	        </div>
-	
+	        
+	        <!-- Text input-->
+	        <div class="control-group">
+	          <label class="control-label" for="direccion">Direccion </label>
+	            <div class="controls">
+	              <input id="direccion" name="direccion" type="text" placeholder="Direccion" class="input-xlarge" required="">
+	            </div>
+	        </div>
+	        
+	        <!-- Text input-->
+	        <div class="control-group">
+	          <label class="control-label" for="telefono">Telefono </label>
+	            <div class="controls">
+	              <input id="telefono" name="telefono" type="text" placeholder="Telefono" class="input-xlarge" required="">
+	            </div>
+	        </div>
+	        
+	        <!-- Text input-->
+	        <div class="control-group">
+	          <label class="control-label" for="bodega">Bodega </label>
+	            <div class="controls">
+	              <input id="bodega" name="bodega" type="text" placeholder="Bodega" class="input-xlarge" required="">
+	            </div>
+	        </div>
+	        
+	        <!-- Text input-->
+	        <div class="control-group">
+	          <label class="control-label" for="cc_Admin">CC_Admin </label>
+	            <div class="controls">
+	              <input id="ccAdmin" name="ccAdmin" type="text" placeholder="CC_Admin" class="input-xlarge" required="">
+	            </div>
+	        </div>
+        
 	        <!-- Button -->
 	        <div class="control-group">
-	          <label class="control-label" for="botonGuardarDependencia"></label>
+	          <label class="control-label" for="botonGuardarSeccion"></label>
 	          <div class="controls">
-	            <input type = "submit" id="botonGuardarDependencia" name="botonGuardarDependencia" class="btn btn-primary" value="Guardar">
+	            <input type = "submit" id="botonGuardarSeccion" name="botonGuardarSecciom" class="btn btn-primary" value="Guardar">
 	          </div>
 	        </div>
 	        </fieldset>
@@ -122,7 +154,5 @@
 
     </div>
 	
-    
-        
     </body>
 </html>

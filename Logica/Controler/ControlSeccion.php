@@ -13,15 +13,15 @@ abstract class ControlSeccion extends SystemControl
 		$this->seccion = null;
 	}
 
-	public function setDependencia($arrseccion){
+	public function setSeccion($arrseccion){
 		$this->seccion = new Seccion($arrseccion);		
 	}
 
 	/*
-	 *$dependencia debe estar cargado previamente para
+	 *$seccion debe estar cargado previamente para
 	 *poder ser creada, actualizada o eliminada.
 	 */
-	//crea una dependencia
+	//crea una seccion
 	final public function crearSeccion(){
 		if($this->seccion == null){
 			throw new Exception('Seccion sin datos');
@@ -30,7 +30,7 @@ abstract class ControlSeccion extends SystemControl
 		
 	}
 	
-	//modifica una dependencia existente
+	//modifica una seccion existente
 	final protected function modificarSeccion(){
 		if($this->seccion != null){
 			throw new Exception('Seccion sin datos');
@@ -38,7 +38,7 @@ abstract class ControlSeccion extends SystemControl
 		DataAccess::update($this->seccion);	
 	}  
 
-	//Elimina una dependencia existente
+	//Elimina una seccion existente
 	final protected function eliminar(){
 		if($this->seccion != null){
 			throw new Exception('Seccion sin datos');

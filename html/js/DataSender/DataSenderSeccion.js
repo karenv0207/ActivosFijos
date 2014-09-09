@@ -8,29 +8,33 @@ x.ready(events);
 
 function events()
 {
-  var x = $("#botonGuardarDependencia");
+  var x = $("#botonGuardarSeccion");
   x.click(pressButton);
 }
 
 function pressButton()
 {
  
-  var d = $("#dependencia").val();
-  var a = $("#activo").prop("checked");
-  var e = $("#empresa").val();
+  var seccion = $("#seccion").val();
+  var activo = $("#activo").prop("checked");
+  var dependencia = $("#dependencia").val();
+  var direccion = $("#direccion").val();
+  var telefono = $("#telefono").val();
+  var bodega = $("#bodega").val();
+  var ccAdmin = $("#cc_admin").val();
   
-  if(a == true)
+  if(activo == true)
   {
-  	a = 1;
+  	activo = 1;
   }
-  else if(a == false)
+  else if(activo == false)
   {
-  	a = 0;
+  	activo = 0;
   }
 
-  var JSON = $.parseJSON('{"iddependencia":0, "nombre":"'+d+'", "activo":'+a+', "idempresa":'+e+'}'); 
+  var JSON = $.parseJSON('{"idseccion":0, "nombre":"'+seccion+'", "activo":'+activo+', "iddependencia":'+dependencia+', "direccion":"'+direccion+'", "telefono":"'+telefono+'", "bodega":"'+bodega+'", "cc_admin":"'+ccAdmin+'"}'); 
   
-  $.post("../logica/ScriptsPHP/requestDependencia.php",{Json:JSON}, dataR); 
+  $.post("../logica/ScriptsPHP/requestSeccion.php",{Json:JSON}, dataR); 
   return false;
 }
 
@@ -39,12 +43,13 @@ function dataR(bandera)
   	if(bandera == 1)
 	{
 		setTimeout ("redireccionar()", 2000); 
-  		alert("La dependencia ha sido agregada");
+  		alert("La Seccion ha sido agregada");
 	}
 	else
 	{
-		setTimeout ("redireccionar()", 2000);
-		alert("La dependencia no ha sido agregada");
+		//setTimeout ("redireccionar()", 2000);
+		//alert("La Seccion no ha sido agregada");
+		document.write(bandera);
 	}
 	
 }
