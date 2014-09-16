@@ -47,11 +47,15 @@
     <!-- menu superior -->
      <div class="container" style="padding-top: 1em;">
   		 <ul class="nav nav-tabs nav-justified">
-    		 <li><a href="main.html">Inicio</a></li>		     
+    		 <li><a href="main.html">Inicio</a></li>
 		     <li><a href="Empresa.html">Empresa</a></li>
-		     <li><a href="Linea.html">Linea</a></li>
-		     <li><a href="Dependencia.html">Dependencia</a></li>
-		     <li class="active"><a href="formularioSeccion.html">Seccion</a></li>
+         	 <li><a href="Dependencia.html">Dependencia</a></li>
+         	 <li class="active"><a href="Seccion.html">Seccion</a></li>
+         	 <li><a href="Linea.html">Linea</a></li>
+         	 <li><a href="Marca.html">Marca</a></li>
+         	 <li><a href="EstadoArticulo.html">Estado Articulo</a></li>
+         	 <li><a href="Articulo.html">Articulo</a></li>
+		     <li><a href="Usuario.html">Usuario</a></li>
 		     <li><a href="index.html">Salir</a></li> <!-- no elimina sessions, por favor revisar -->
 	  	 </ul>
 	   </div> 
@@ -62,7 +66,7 @@
 			<div class="col-md-2">
 				<ul class="nav nav-pills nav-stacked">
 					<li><a href="formularioSeccion.html">Registrar</a></li>
-		     		<li><a href="../Logica/ScriptsPHP/consultaSeccion.php">Reportar</a></li>
+		     		<li><a href="consultaSeccion.html">Reportar</a></li>
 		     		<li><a href="main.html">Volver</a></li>
 				</ul>
       		</div>
@@ -94,16 +98,9 @@
 	        <div class="row">
 	        <div class="control-group">
 	        	<div class="col-xs-6">	
-	          		<label class="control-label" for="Dependecia">Dependencia</label>
-	            		<div class="controls">
-			        		<select class="form-control" id = "dependencia" class="input-xlarge">
-					  			<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
+	          		<label class="control-label" for="Dependencia">Dependencia</label>
+	            		<div id = "DDependencia" class="controls">
+			        	</div>
 				</div>
 				</div>
 	        </div>
@@ -136,7 +133,7 @@
 	        <div class="control-group">
 	          <label class="control-label" for="cc_Admin">CC_Admin </label>
 	            <div class="controls">
-	              <input id="ccAdmin" name="ccAdmin" type="text" placeholder="CC_Admin" class="input-xlarge" required="">
+	              <input id="cc_admin" name="cc_admin" type="text" placeholder="CC_Admin" class="input-xlarge" required="">
 	            </div>
 	        </div>
         

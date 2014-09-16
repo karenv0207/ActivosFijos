@@ -67,7 +67,7 @@ Class DataAccess {
 		$result = pg_query($dbconexion, $query); // or die("FAllo");
 
 		if (!$result) {
-			throw new Exception("Error en la consulta :)");
+			throw new Exception("Error en la consulta :) ".$query);
 			return;
 		}
 		return TRUE;
@@ -83,21 +83,25 @@ Class DataAccess {
 			throw new Exception("Nombre de tabla ó datos ó nombres de campos NULOS");
 			return;
 		}
-		$query = "SELECT * FROM " . self::$CONST_PREFIX . $table . " WHERE " . pg_escape_string($columName[0]) . "= '" . pg_escape_string($values[0]) . ";";
+		$query = "SELECT * FROM " . self::$CONST_PREFIX . $table . " WHERE " . pg_escape_string($columName[0]) . " = " . pg_escape_string($values[0]) . ";";
 
 		$result = pg_query($query);
 
-		if (!$result) {
+		if (!$result) 
+		{
 			throw new Exception("Error en la consulta :)");
 			return;
 		}
-		elseif ($row = pg_fetch_row($result)) {
+		elseif ($row = pg_fetch_assoc($result)) 
+		{
 			$dataAccess -> setData($row);
-		}else{
+		}
+		else
+		{
 			return FALSE;
 		}
+		
 		return TRUE;
-
 	}
 
 	public static function update(IDataAccess $dataAccess) {
@@ -132,7 +136,7 @@ Class DataAccess {
 
 	}
 	
-	public static function selectWhere(IDataAccess $dataAccess, $positionWhile=null)
+	public static function selectWhere(IDataAccess $dataAccess, $positionWhile = null)
 	{
 		$dbconexion = self::$dbcon;
 		$table = $dataAccess->getTitle();
@@ -141,8 +145,8 @@ Class DataAccess {
 		
 		$query = "SELECT * FROM ".$table;
 		
-		/*if($positionWhile != null){
-    		$query.= " WHERE " . pg_escape_string($columName[$positionWhile]) . " = '" . pg_escape_string($values[$positionWhile])."'"; 
+		/*if($positionWhile != NULL){
+    		$query.= " WHERE " . pg_escape_string($columName[$positionWhile]) . " = '" . pg_escape_string($values[$columName[$positionWhile]])."'"; 
 		}*/
 		$query.=";";
 		
@@ -154,6 +158,7 @@ Class DataAccess {
 			return;
 		}
 		
+		$dataArry = null;
 		while ($row = pg_fetch_assoc($result)) {
 			$dataArry[] = $row;
 		}

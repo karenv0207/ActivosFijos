@@ -2,11 +2,25 @@
     require_once ('../Controler/HCDependencia.php');
 	
 	session_start();
-  
-  	$control = new HCDependencia($_SESSION);
+	$control = new HCDependencia($_SESSION);
+	
+	if (isset($_POST['flag_prepare'])) 
+	{
+   		$flag = $_REQUEST['flagprepare'];
+		if($flag)
+		{
+			$empresa = $control->getEmpre(TRUE);	
+			$JsonEmpresa = json_encode($empresa);
+			echo $JsonEmpresa;
+		}
+	}
+	
   	$control ->cargarDependencia(null);
   	$result = $control->obtenerConsulta();
+	$empresa = $control->getEmpre();
 	
+	
+
 ?>
 
 <!DOCTYPE html>
@@ -53,12 +67,17 @@
     <!-- menu superior -->
      <div class="container" style="padding-top: 1em;">
   		 <ul class="nav nav-tabs nav-justified">
-    		 <li><a href="main.html">Inicio</a></li>
-		     <li><a href="Empresa.html">Empresa</a></li>
-         	 <li class="active"><a href="Dependencia.html">Dependencia</a></li>
-         	 <li><a href="Linea.html">Linea</a></li>
-		     <li><a href="Usuario.html">Usuario</a></li>
-		     <li><a href="index.html">Salir</a></li> <!-- no elimina sessions, por favor revisar -->
+    		<li><a href="../../html/main.html">Inicio</a></li>
+		    <li><a href="../../html/Empresa.html">Empresa</a></li>
+       	 	<li><a href="../../html/Dependencia.html">Dependencia</a></li>
+       	 	<li><a href="../../html/Seccion.html">Seccion</a></li>
+       	 	<li><a href="../../html/Linea.html">Linea</a></li>
+         	<li><a href="../../html/Sublinea.html">Sublinea</a></li>
+       	 	<li><a href="../../html/Marca.html">Marca</a></li>
+       	 	<li><a href="../../html/EstadoArticulo.html">Estado Articulo</a></li>
+		 	<li><a href="../../html/Articulo.html">Articulo</a></li>
+         	<li><a href="../../html/Usuario.html">Usuario</a></li>
+		 	<li><a href="../../index.html">Salir</a></li> <!-- no elimina sessions, por favor revisar -->
 	  	 </ul>
 	   </div> 
     <p>
@@ -83,14 +102,15 @@
 			    			</tr>
 			  			</thead>
 			  		<tbody>
-			      	<?php	$count = count($result); 
+			      	<?php	
+			      	        $count = count($result); 
 			      			for ($index = 0; $index < $count; $index++) { 
 								$row = $result[$index]; ?>
 						<tr>	
 							<td><?php echo $row['iddependencia'];?></td>
 						  	<td><?php echo $row['nombre'];?></td>
-						  	<td><?php echo $row['activo'];?></td>
-						  	<td><?php echo $row['idempresa'];?></td>
+						  	<td><?php echo ($row['activo'])?"activo":"inactivo";?></td>
+						  	<td><?php echo $empresa[$row['idempresa']];?></td>
 						</tr>
 					<?php } ?> 
 			       </table>     

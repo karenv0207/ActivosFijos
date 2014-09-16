@@ -22,6 +22,6 @@ require_once ('../Controler/HCusuario.php');
   else
   {
     //creacion de mensaje de respuesta (P)  
-    echo("Ingrese los datos de la empresa");
+    echo("Ingrese los datos del usuario");
   }
 ?>

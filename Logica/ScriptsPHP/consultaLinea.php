@@ -3,13 +3,16 @@ require_once ('../Controler/HClinea.php');
     session_start();
   
   	$control = new HClinea($_SESSION);
-  	$control ->cargarLinea(null, null);
+  	$control ->cargarLinea(null);
   	$result = $control->obtenerConsulta();
 	
 ?>
 
 <!DOCTYPE html>
-  <html class="no-js"> 
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -49,9 +52,17 @@ require_once ('../Controler/HClinea.php');
     <!-- menu superior -->
      <div class="container" style="padding-top: 1em;">
   		 <ul class="nav nav-tabs nav-justified">
-    		 <li><a href="#">Inicio</a></li>
-		     <li><a href="formularioLinea.html">Agregar Linea</a></li>
-		     <li><a href="#">Salir</a></li>
+    		<li><a href="../../html/main.html">Inicio</a></li>
+		    <li><a href="../../html/Empresa.html">Empresa</a></li>
+       	 	<li><a href="../../html/Dependencia.html">Dependencia</a></li>
+       	 	<li><a href="../../html/Seccion.html">Seccion</a></li>
+       	 	<li><a href="../../html/Linea.html">Linea</a></li>
+         	<li><a href="../../html/Sublinea.html">Sublinea</a></li>
+       	 	<li><a href="../../html/Marca.html">Marca</a></li>
+       	 	<li><a href="../../html/EstadoArticulo.html">Estado Articulo</a></li>
+		 	<li><a href="../../html/Articulo.html">Articulo</a></li>
+         	<li><a href="../../html/Usuario.html">Usuario</a></li>
+		 	<li><a href="../../index.html">Salir</a></li> <!-- no elimina sessions, por favor revisar -->
 	  	 </ul>
 	   </div> 
     <p>
@@ -81,7 +92,7 @@ require_once ('../Controler/HClinea.php');
 						<tr>	
 							<td><?php echo $row['idlinea'];?></td>
 						  	<td><?php echo $row['nombre'];?></td>
-						  	<td><?php echo $row['activo'];?></td>
+						  	<td><?php echo ($row['activo'])?"activo":"inactivo";?></td>
 						</tr>
 					<?php 	} ?> 
 			       </table>     
@@ -89,22 +100,5 @@ require_once ('../Controler/HClinea.php');
       		</div>
 		</div>               
     </div>
-    
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
-
-        <script src="js/vendor/bootstrap.min.js"></script>
-
-        <script src="js/main.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-       <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
     </body> 
 </html>

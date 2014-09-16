@@ -29,6 +29,7 @@
     </head>
     <body>
     <script type="text/javascript" src="js/DataSender/DataSenderDependencia.js"></script>
+    <div id="debug"></div>
     <div class="container">
       <!-- Logo Empresa -->
       <div class="row">
@@ -49,9 +50,13 @@
   		 <ul class="nav nav-tabs nav-justified">
     		 <li><a href="main.html">Inicio</a></li>
 		     <li><a href="Empresa.html">Empresa</a></li>
-		     <li><a href="Linea.html">Linea</a></li>
          	 <li class="active"><a href="Dependencia.html">Dependencia</a></li>
          	 <li><a href="Seccion.html">Seccion</a></li>
+         	 <li><a href="Linea.html">Linea</a></li>
+         	 <li><a href="Sublinea.html">Sublinea</a></li>
+         	 <li><a href="Marca.html">Marca</a></li>
+         	 <li><a href="EstadoArticulo.html">Estado Articulo</a></li>
+         	 <li><a href="Articulo.html">Articulo</a></li>
 		     <li><a href="Usuario.html">Usuario</a></li>
 		     <li><a href="index.html">Salir</a></li> <!-- no elimina sessions, por favor revisar -->
 	  	 </ul>
@@ -63,13 +68,13 @@
 			<div class="col-md-2">
 				<ul class="nav nav-pills nav-stacked">
 					<li><a href="formularioDependencia.html">Registrar</a></li>
-		     		<li><a href="../Logica/ScriptsPHP/consultaDependencia.php">Reportar</a></li>
+		     		<li><a href="consultaDependencia.html">Reportar</a></li>
 		     		<li><a href="main.html">Volver</a></li>
 				</ul>
       		</div>
 		  
         <div class="col-md-4">
-	      <form class="form-horizontal"> <!--action="../logica/ScriptsPHP/requestDependencia.php">-->
+	      <form class="form-horizontal"> <!--action="../logica/ScriptsPHP/requestEmpresa.php">-->
 	
 	        <fieldset>
 	
@@ -96,14 +101,14 @@
 	        <div class="control-group">
 	        	<div class="col-xs-6">	
 	          		<label class="control-label" for="Empresa">Empresa</label>
-	            		<div class="controls">
-			        		<select class="form-control" id = "empresa" class="input-xlarge">
+	            		<div id = "Aempresa"class="controls">
+			        		<!--<select class="form-control" id = "empresa" class="input-xlarge">
 					  			<option>30</option>
 								<option>31</option>
 								<option>32</option>
 								<option>33</option>
 								<option>34</option>
-							</select>
+							</select>-->
 						</div>
 				</div>
 				</div>
